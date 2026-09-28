@@ -1,0 +1,281 @@
+{
+  "entities": {
+    "Rombel": {
+      "title": "Rombel",
+      "description": "Data rombongan belajar MTs Nurul Jadid",
+      "type": "object",
+      "properties": {
+        "kelas": { "type": "string", "enum": ["VII", "VIII", "IX"] },
+        "program": { "type": "string", "maxLength": 100 },
+        "rombel": { "type": "string", "pattern": "^[1-7]$" },
+        "jumlahSiswa": { "type": "number" },
+        "keterangan": { "type": "string", "maxLength": 255 },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["kelas", "program", "rombel", "jumlahSiswa"]
+    },
+    "Student": {
+      "title": "Student",
+      "description": "Data siswa MTs Nurul Jadid",
+      "type": "object",
+      "properties": {
+        "nama": { "type": "string", "maxLength": 150 },
+        "kelas": { "type": "string", "enum": ["VII", "VIII", "IX"] },
+        "program": { "type": "string", "enum": ["Agama", "Tahfidz", "Reguler"] },
+        "rombel": { "type": "string", "pattern": "^[1-7]$" },
+        "nisn": { "type": "string", "maxLength": 20 },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["nama", "kelas", "program", "rombel"]
+    },
+    "Prota": {
+      "title": "Prota",
+      "description": "Program Tahunan Kurikulum MTs Nurul Jadid",
+      "type": "object",
+      "properties": {
+        "semester": { "type": "string", "enum": ["Ganjil", "Genap"] },
+        "bulan": { "type": "string", "maxLength": 50 },
+        "jenisProgram": { "type": "string", "maxLength": 100 },
+        "namaProgram": { "type": "string", "maxLength": 200 },
+        "alokasiWaktu": { "type": "string", "maxLength": 50 },
+        "keterangan": { "type": "string", "enum": ["diajukan", "berjalan", "selesai"] }
+      },
+      "required": ["semester", "bulan", "jenisProgram", "namaProgram", "alokasiWaktu", "keterangan"]
+    },
+    "Promes": {
+      "title": "Promes",
+      "description": "Program Semester Kurikulum MTs Nurul Jadid",
+      "type": "object",
+      "properties": {
+        "mingguKe": { "type": "string", "maxLength": 20 },
+        "bulan": { "type": "string", "maxLength": 50 },
+        "jenisProgram": { "type": "string", "maxLength": 100 },
+        "namaProgram": { "type": "string", "maxLength": 200 },
+        "modulAjar": { "type": "string", "maxLength": 150 },
+        "keterangan": { "type": "string", "enum": ["diajukan", "berjalan", "selesai"] }
+      },
+      "required": ["mingguKe", "bulan", "jenisProgram", "namaProgram", "modulAjar", "keterangan"]
+    },
+    "ATP": {
+      "title": "ATP",
+      "description": "Alur Tujuan Pembelajaran",
+      "type": "object",
+      "properties": {
+        "namaSatuanPendidikan": { "type": "string", "maxLength": 150 },
+        "mataPelajaran": { "type": "string", "maxLength": 100 },
+        "faseKelas": { "type": "string", "maxLength": 50 },
+        "semester": { "type": "string", "enum": ["Ganjil", "Genap"] },
+        "tahunPelajaran": { "type": "string", "maxLength": 20 },
+        "penyusun": { "type": "string", "maxLength": 150 },
+        "ruangLingkupMateri": { "type": "string", "maxLength": 500 },
+        "tujuanPembelajaran": { "type": "string", "maxLength": 1000 }
+      },
+      "required": ["namaSatuanPendidikan", "mataPelajaran", "faseKelas", "semester", "tahunPelajaran", "penyusun", "ruangLingkupMateri", "tujuanPembelajaran"]
+    },
+    "SKTugasGuru": {
+      "title": "SKTugasGuru",
+      "description": "SK Pembagian Tugas Guru MTs Nurul Jadid",
+      "type": "object",
+      "properties": {
+        "namaGuru": { "type": "string", "maxLength": 150 },
+        "kategoriMapel": { "type": "string", "maxLength": 80 },
+        "namaMapel": { "type": "string", "maxLength": 100 },
+        "nomorSK": { "type": "string", "maxLength": 100 },
+        "jabatanStruktural": { "type": "string", "maxLength": 150 },
+        "ekuivalensi": { "type": "string", "maxLength": 50 },
+        "bebanJp": { "type": "string", "maxLength": 50 },
+        "keterangan": { "type": "string", "maxLength": 300 }
+      },
+      "required": ["namaGuru", "kategoriMapel", "namaMapel", "nomorSK", "ekuivalensi", "bebanJp", "keterangan"]
+    },
+    "KisiKisi": {
+      "title": "KisiKisi",
+      "description": "Kisi-kisi Soal Ujian & Asesmen",
+      "type": "object",
+      "properties": {
+        "namaLembaga": { "type": "string", "maxLength": 150 },
+        "kelas": { "type": "string", "enum": ["VII", "VIII", "IX"] },
+        "program": { "type": "string", "enum": ["Agama", "Tahfidz", "Reguler"] },
+        "mapel": { "type": "string", "maxLength": 100 },
+        "jumlahSoal": { "type": "string", "maxLength": 20 },
+        "kompetensiDasar": { "type": "string", "maxLength": 500 },
+        "uraianMateri": { "type": "string", "maxLength": 500 },
+        "indikatorSoal": { "type": "string", "maxLength": 500 },
+        "bobotSoal": { "type": "string", "maxLength": 50 }
+      },
+      "required": ["namaLembaga", "kelas", "program", "mapel", "jumlahSoal", "kompetensiDasar", "uraianMateri", "indikatorSoal", "bobotSoal"]
+    },
+    "BankSoal": {
+      "title": "BankSoal",
+      "description": "Arsip dan Bank Soal Madrasah",
+      "type": "object",
+      "properties": {
+        "judul": { "type": "string", "maxLength": 200 },
+        "mapel": { "type": "string", "maxLength": 100 },
+        "kelas": { "type": "string", "maxLength": 50 },
+        "fileName": { "type": "string", "maxLength": 200 },
+        "fileData": { "type": "string" },
+        "keterangan": { "type": "string", "maxLength": 500 }
+      },
+      "required": ["judul", "mapel", "kelas", "fileName"]
+    },
+    "Evaluasi": {
+      "title": "Evaluasi",
+      "description": "Evaluasi Tengah/Akhir Semester",
+      "type": "object",
+      "properties": {
+        "tipe": { "type": "string", "enum": ["Tengah Semester", "Akhir Semester"] },
+        "temuanLapangan": { "type": "string", "maxLength": 1000 },
+        "evaluasi": { "type": "string", "maxLength": 1000 },
+        "solusi": { "type": "string", "maxLength": 1000 },
+        "keterangan": { "type": "string", "enum": ["diajukan", "berjalan", "selesai"] }
+      },
+      "required": ["tipe", "temuanLapangan", "evaluasi", "solusi", "keterangan"]
+    },
+    "Prestasi": {
+      "title": "Prestasi",
+      "description": "Prestasi Siswa Akademik dan Non-Akademik",
+      "type": "object",
+      "properties": {
+        "jenis": { "type": "string", "enum": ["Akademik", "Non-Akademik"] },
+        "namaLomba": { "type": "string", "maxLength": 200 },
+        "tingkat": { "type": "string", "enum": ["Lokal", "Regional", "Nasional", "Internasional"] },
+        "keteranganJuara": { "type": "string", "enum": ["I", "II", "III", "IV", "V", "Harapan I", "Harapan II"] },
+        "dokumentasiJuara": { "type": "string" },
+        "namaSiswa": { "type": "string", "maxLength": 150 },
+        "tahun": { "type": "string", "maxLength": 20 }
+      },
+      "required": ["jenis", "namaLomba", "tingkat", "keteranganJuara"]
+    },
+    "Dokumentasi": {
+      "title": "Dokumentasi",
+      "description": "Galeri Dokumentasi Madrasah",
+      "type": "object",
+      "properties": {
+        "keterangan": { "type": "string", "maxLength": 500 },
+        "gambarUrl": { "type": "string" },
+        "tanggal": { "type": "string", "maxLength": 50 }
+      },
+      "required": ["keterangan", "gambarUrl"]
+    },
+    "MateriIHT": {
+      "title": "MateriIHT",
+      "description": "Materi In House Training Guru",
+      "type": "object",
+      "properties": {
+        "tanggalPelaksanaan": { "type": "string", "maxLength": 50 },
+        "materiIht": { "type": "string", "maxLength": 300 },
+        "kesimpulan": { "type": "string", "maxLength": 1000 },
+        "tindakLanjut": { "type": "string", "maxLength": 1000 }
+      },
+      "required": ["tanggalPelaksanaan", "materiIht", "kesimpulan"]
+    },
+    "TemplateNilai": {
+      "title": "TemplateNilai",
+      "description": "Template Nilai Standar RDM",
+      "type": "object",
+      "properties": {
+        "namaSiswa": { "type": "string", "maxLength": 150 },
+        "kelasProgram": { "type": "string", "maxLength": 100 },
+        "jenisMapel": { "type": "string", "maxLength": 100 },
+        "namaMapel": { "type": "string", "maxLength": 100 },
+        "nilaiPengetahuan": { "type": "string", "maxLength": 10 },
+        "nilaiKeterampilan": { "type": "string", "maxLength": 10 },
+        "deskripsi": { "type": "string", "maxLength": 500 }
+      },
+      "required": ["namaSiswa", "kelasProgram", "jenisMapel", "namaMapel", "nilaiPengetahuan", "nilaiKeterampilan", "deskripsi"]
+    },
+    "Announcement": {
+      "title": "Announcement",
+      "description": "Pengumuman dan Notifikasi Real-time",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "maxLength": 200 },
+        "content": { "type": "string", "maxLength": 1000 },
+        "isUrgent": { "type": "boolean" },
+        "author": { "type": "string", "maxLength": 100 },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["title", "content"]
+    },
+    "ActivityLog": {
+      "title": "ActivityLog",
+      "description": "Log Aktivitas Pengguna",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "maxLength": 128 },
+        "userName": { "type": "string", "maxLength": 150 },
+        "userRole": { "type": "string", "maxLength": 50 },
+        "action": { "type": "string", "maxLength": 100 },
+        "module": { "type": "string", "maxLength": 100 },
+        "details": { "type": "string", "maxLength": 500 },
+        "timestamp": { "type": "string" }
+      },
+      "required": ["userName", "action", "module", "timestamp"]
+    }
+  },
+  "firestore": {
+    "/rombels/{rombelId}": {
+      "schema": "Rombel",
+      "description": "Koleksi data rombongan belajar"
+    },
+    "/students/{studentId}": {
+      "schema": "Student",
+      "description": "Koleksi data siswa"
+    },
+    "/prota/{protaId}": {
+      "schema": "Prota",
+      "description": "Koleksi program tahunan"
+    },
+    "/promes/{promesId}": {
+      "schema": "Promes",
+      "description": "Koleksi program semester"
+    },
+    "/atp/{atpId}": {
+      "schema": "ATP",
+      "description": "Koleksi alur tujuan pembelajaran"
+    },
+    "/skTugasGuru/{skId}": {
+      "schema": "SKTugasGuru",
+      "description": "Koleksi SK tugas guru"
+    },
+    "/kisiKisi/{kisiId}": {
+      "schema": "KisiKisi",
+      "description": "Koleksi kisi-kisi penilaian"
+    },
+    "/bankSoal/{soalId}": {
+      "schema": "BankSoal",
+      "description": "Koleksi bank soal ujian"
+    },
+    "/evaluasi/{evalId}": {
+      "schema": "Evaluasi",
+      "description": "Koleksi evaluasi tengah dan akhir semester"
+    },
+    "/prestasi/{prestasiId}": {
+      "schema": "Prestasi",
+      "description": "Koleksi prestasi siswa"
+    },
+    "/dokumentasi/{dokId}": {
+      "schema": "Dokumentasi",
+      "description": "Koleksi dokumentasi kegiatan madrasah"
+    },
+    "/materiIht/{ihtId}": {
+      "schema": "MateriIHT",
+      "description": "Koleksi materi In House Training"
+    },
+    "/templateNilai/{nilaiId}": {
+      "schema": "TemplateNilai",
+      "description": "Koleksi template nilai standar"
+    },
+    "/announcements/{announcementId}": {
+      "schema": "Announcement",
+      "description": "Koleksi pengumuman mendesak"
+    },
+    "/activityLogs/{logId}": {
+      "schema": "ActivityLog",
+      "description": "Koleksi audit log aktivitas pengguna"
+    }
+  }
+}

@@ -1,0 +1,121 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128;
+    }
+
+    // Default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Rombels collection
+    match /rombels/{rombelId} {
+      allow read: if isSignedIn();
+      allow create, update, delete: if isSignedIn() && isValidId(rombelId);
+    }
+
+    // Students collection
+    match /students/{studentId} {
+      allow read: if isSignedIn();
+      allow create, update, delete: if isSignedIn() && isValidId(studentId);
+    }
+
+    // Program Tahunan (Prota)
+    match /prota/{protaId} {
+      allow read: if isSignedIn();
+      allow create, update, delete: if isSignedIn() && isValidId(protaId);
+    }
+
+    // Program Semester (Promes)
+    match /promes/{promesId} {
+      allow read: if isSignedIn();
+      allow create, update, delete: if isSignedIn() && isValidId(promesId);
+    }
+
+    // Alur Tujuan Pembelajaran (ATP)
+    match /atp/{atpId} {
+      allow read: if isSignedIn();
+      allow create, update, delete: if isSignedIn() && isValidId(atpId);
+    }
+
+    // SK Pembagian Tugas Guru
+    match /skTugasGuru/{skId} {
+      allow read: if isSignedIn();
+      allow create, update, delete: if isSignedIn() && isValidId(skId);
+    }
+
+    // Kisi-kisi
+    match /kisiKisi/{kisiId} {
+      allow read: if isSignedIn();
+      allow create, update, delete: if isSignedIn() && isValidId(kisiId);
+    }
+
+    // Bank Soal
+    match /bankSoal/{soalId} {
+      allow read: if isSignedIn();
+      allow create, update, delete: if isSignedIn() && isValidId(soalId);
+    }
+
+    // Evaluasi Tengah & Akhir Semester
+    match /evaluasi/{evalId} {
+      allow read: if isSignedIn();
+      allow create, update, delete: if isSignedIn() && isValidId(evalId);
+    }
+
+    // Prestasi Siswa
+    match /prestasi/{prestasiId} {
+      allow read: if isSignedIn();
+      allow create, update, delete: if isSignedIn() && isValidId(prestasiId);
+    }
+
+    // Dokumentasi
+    match /dokumentasi/{dokId} {
+      allow read: if isSignedIn();
+      allow create, update, delete: if isSignedIn() && isValidId(dokId);
+    }
+
+    // Materi IHT
+    match /materiIht/{ihtId} {
+      allow read: if isSignedIn();
+      allow create, update, delete: if isSignedIn() && isValidId(ihtId);
+    }
+
+    // Template Nilai Standar
+    match /templateNilai/{nilaiId} {
+      allow read: if isSignedIn();
+      allow create, update, delete: if isSignedIn() && isValidId(nilaiId);
+    }
+
+    // Pengumuman & Notifikasi Mendesak
+    match /announcements/{announcementId} {
+      allow read: if isSignedIn();
+      allow create, update, delete: if isSignedIn() && isValidId(announcementId);
+    }
+
+    // Activity Log Pengguna
+    match /activityLogs/{logId} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn() && isValidId(logId);
+      allow update, delete: if isSignedIn() && isValidId(logId);
+    }
+
+    // App Settings
+    match /appSettings/{settingId} {
+      allow read: if isSignedIn();
+      allow write: if isSignedIn() && isValidId(settingId);
+    }
+
+    // Users profile
+    match /users/{userId} {
+      allow read: if isSignedIn();
+      allow write: if isSignedIn() && isValidId(userId);
+    }
+  }
+}

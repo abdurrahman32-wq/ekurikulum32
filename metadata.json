@@ -1,0 +1,6 @@
+{
+  "name": "eKurikulum MTs. Nurul Jadid",
+  "description": "Aplikasi Web Dashboard eKurikulum MTs. Nurul Jadid Paiton Probolinggo dengan manajemen kurikulum, data siswa, data guru, autentikasi multi-role, dan integrasi Firebase.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
